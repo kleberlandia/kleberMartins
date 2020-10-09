@@ -1,0 +1,53 @@
+entity Pessoa{
+nome String 
+cpf String
+dataNascimento LocalDate
+dataCadastro ZonedDateTime
+}
+
+enum Status{
+BLOQUEADO, LIBERADO, ROUBADO
+}
+
+entity Cartao{
+numero String
+mesvalidade Integer
+anovalidade Integer
+nome String
+codigodeseguranca Integer
+limitedecreditos Double
+}
+entity Categoria{
+nome String
+descricao String
+pontuacaominima Double
+}
+
+entity Endereco{
+nome String 
+logadouro String
+numero String
+referencia String 
+bairro String
+cidade String
+cep Integer
+}
+entity Produto{
+nome String
+local String
+data LocalDate
+valor Double
+}
+
+entity Pagamento{
+ 	data LocalDate
+	valor Double
+    nomeBando String
+}
+relationship OneToMany{
+	Pessoa{cartoes} to Cartao{dono}
+    Cartao{faturas} to Fatura{cartao}
+    Fatura{produto} to Produto{fatura}
+    }
+   
+    
